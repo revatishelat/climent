@@ -1,4 +1,4 @@
-**[ongoing; code not up-to-date and has been modified in order to be made available publicly]** <br/><br/>
+**[ongoing; code not up-to-date and has been modified]** <br/><br/>
 # climent
 Climent is a Sentiment Analysis tool. Here, we present a specific application: a study of sentiment regarding Climate Change and Climate Action using data scraped from Twitter.
 
