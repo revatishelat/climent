@@ -1,0 +1,167 @@
+---
+title: "Scraping Twitter data with Twitter API"
+author: "Revati Shelat"
+date: "5/12/2022"
+output:
+word_document: default
+html_document: default
+---
+
+```{r}
+
+# Install Packages (note: xlsx required)
+install.packages("httpuv")
+install.packages("remotes")
+remotes::install_github("ropensci/rtweet")
+
+#Load all packages required for data mining
+library(rtweet)
+library(httpuv)
+library(xlsx)
+#library(readxl)
+
+# view rtweet's authorization vignette
+# vignette("auth", package = "rtweet") #NOT WORKING ON MY MAC! POR QUE? >:C
+
+```
+
+```{r}
+
+###Create Token
+
+#API Access and Bearer Tokens
+apiKey <- ""
+apiSecret <- ""
+accessToken <- ""
+accessSecret <- ""
+
+token <- create_token(
+  app = "twt_project_sem6",
+  consumer_key = apiKey,
+  consumer_secret = apiSecret,
+  access_token <- accessToken,
+  access_secret <- accessSecret,
+  set_renv = TRUE
+  )
+
+#Check for token
+get_token()
+
+```
+
+```{r}
+
+###MINE TWEETS
+
+#Returns path name
+#For parameters safedir (search_fullarchive) and file (write.xlsx2)
+getwd()
+
+#Mine tweets that contain specific hashtag (q) within specific timespan
+testDec11 <- search_fullarchive(
+  q="#climatechange",
+  n = 100,
+  fromDate = '202212101000',
+  toDate = '202212111000',
+  env_name = "climatenew",
+  safedir = "c:/Users/revat/Documents/R/Twitter Analysis",
+  parse = TRUE,
+  token = token
+)
+
+#Write file to working directory
+write.xlsx2(testDec11, "c:/Users/revat/Documents/R/Twitter Analysis/testDec11.xlsx", sheetName="testDec11",
+col.names=TRUE, row.names=TRUE, append=FALSE, override=T)
+
+```
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+```{r}
+
+###Read Raw data files 
+
+d1 <- read_excel("C:/Users/revat/Desktop/+/Stat Sem 6/twt project/data/RD1031.xlsx")
+d2 <- read_excel("C:/Users/revat/Desktop/+/Stat Sem 6/twt project/data/RD1101.xlsx")
+d3 <- read_excel("C:/Users/revat/Desktop/+/Stat Sem 6/twt project/data/RD1102.xlsx")
+d4 <- read_excel("C:/Users/revat/Desktop/+/Stat Sem 6/twt project/data/RD1103.xlsx")
+d5 <- read_excel("C:/Users/revat/Desktop/+/Stat Sem 6/twt project/data/RD1104.xlsx")
+d6 <- read_excel("C:/Users/revat/Desktop/+/Stat Sem 6/twt project/data/RD1105.xlsx")
+d7 <- read_excel("C:/Users/revat/Desktop/+/Stat Sem 6/twt project/data/RD1106.xlsx")
+d8 <- read_excel("C:/Users/revat/Desktop/+/Stat Sem 6/twt project/data/RD1107.xlsx")
+d9 <- read_excel("C:/Users/revat/Desktop/+/Stat Sem 6/twt project/data/RD1108.xlsx")
+d10<- read_excel("C:/Users/revat/Desktop/+/Stat Sem 6/twt project/data/RD1109.xlsx")
+d11<- read_excel("C:/Users/revat/Desktop/+/Stat Sem 6/twt project/data/RD1110.xlsx")
+d12<- read_excel("C:/Users/revat/Desktop/+/Stat Sem 6/twt project/data/RD1111.xlsx")
+d13<- read_excel("C:/Users/revat/Desktop/+/Stat Sem 6/twt project/data/RD1112.xlsx")
+
+```
+
+```{r}
+
+###MINE TESTING
+
+apiKey <- "EgzaPL8HP875DE2A1wveA7BHN"
+apiSecret <- "0u6Ef3K1zVyII9QGDroZ5HBF2zkgqrrPU5sZZzLNwheDnbd2K3"
+accessToken <- "1481223121822978048-1GBE0I6qlyAgOUunaMTsJkWnyzAM5S"
+accessSecret <- "gT19kfodnTMzZUdTk07xlVaCvuwwwkMo8w9jJa2WilWOP"
+
+token <- create_token(
+  app = "twt_project_sem6",
+  consumer_key = apiKey,
+  consumer_secret = apiSecret,
+  access_token <- accessToken,
+  access_secret <- accessSecret,
+  set_renv = TRUE
+  )
+
+testNov29 <- search_fullarchive(
+  q="#climatechange",
+  n = 100,
+  fromDate = '202211281000',
+  toDate = '202211291000',
+  env_name = "climatenew",
+  safedir = "C:/Users/revat/Documents/R/Twitter Analysis",
+  parse = TRUE,
+  token = token
+)
+
+write.xlsx2(testNov29, "C:/Users/revat/Desktop/-/Stats Year 3/Stat Sem 6/twt project/data/nov2922test.xlsx", sheetName="Nov 29th, 2022 test",
+col.names=TRUE, row.names=TRUE, append=FALSE, override=T)
+
+#typeof(testNov29)
+
+testList<-as.list(testNov29$text)
+
+#Create list of all extracted hashtags
+hlistTest<-unlist(map(str_extract_all(testList, '#(?:\\S*\\w+)+'), function(x) tolower(str_replace(x, "^#+", "#"))))
+hlistTest
+
+#Get list of hashtags with frequency
+flistTest<-table(hlistTest)
+flistTest
+
+#Sort list by (asc/dec) frequency
+
+slistTest <- sort(flistTest, decreasing = TRUE)
+slistTest
+
+write_xlsx(as.data.frame(slistTest),"C:/Users/revat/Desktop/-/Stats Year 3/Stat Sem 6/twt project/testnov29hastags.xlsx")
+
+```
+
+```{r}
+
+#Mine tweets that contain specific hashtag (q) within specific timespan
+filename <- search_fullarchive(
+  q="#hashtag",
+  n = 100,
+  fromDate = 'yyyymmddhhmm', 
+  toDate = '202212111000',
+  env_name = "climatenew",
+  safedir = "c:/Users/revat/Documents/R/Twitter Analysis",
+  parse = TRUE,
+  token = token
+)
+
+```
+
