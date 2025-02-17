@@ -200,7 +200,6 @@ unname(hashtagFrequency["#climate"]) #get frequency of particular hashtag
 
 ```{r}
 labels(twtdata)
-
 #Create list with each element being text from a single tweet 
 tweetsDataList<-as.list(twtdata$text)
 #length(tweetsDataList)
