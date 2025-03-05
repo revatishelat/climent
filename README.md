@@ -17,7 +17,7 @@ What related topics emerge in the discourse on climate change? <br/>
 
 ----
 
-Final BSc project under the supervision of Dr. Mangala Shah submitted in 2022, as part of BSc Statistics (Dept. of Statistics, The Maharaja Sayajirao University of Baroda)
+Project under the supervision of Dr. Mangala Shah submitted in 2022, as part of BSc Statistics (Dept. of Statistics, The Maharaja Sayajirao University of Baroda)
 
 Collaborators:  Revati Shelat, Bhumika Rathod, Jwisha Shukla, Zinkal Chirutkar, Arpit Kumar Rathwa
 If you'd like a copy of the research paper, please contact me at [revatishelat(at)gmail(dot)com](mailto:revatishelat@gmail.com)
